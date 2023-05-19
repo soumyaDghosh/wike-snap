@@ -14,6 +14,12 @@ layout:
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/webkit2gtk-4.1:
     bind: $SNAP/gnome-platform/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/webkit2gtk-4.1 
 
+slots:
+  wike:
+    interface: dbus
+    bus: session
+    name: com.github.hugolabe.Wike
+    
 parts:
   wike:
     # See 'snapcraft plugins'
