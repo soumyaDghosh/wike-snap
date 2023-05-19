@@ -54,5 +54,6 @@ apps:
       - hardware-observe
       - network
       - network-status
+      - system-observe
     common-id: com.github.hugolabe.Wike
     desktop: usr/share/applications/com.github.hugolabe.Wike.desktop
