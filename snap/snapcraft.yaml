@@ -12,9 +12,9 @@ layout:
   /usr/share/wike:
     symlink: $SNAP/usr/share/wike
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/webkit2gtk-4.1/WebKitNetworkProcess:
-    bindfile: $SNAP/gnome-platform/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/webkit2gtk-4.1/WebKitNetworkProcess
+    bind-file: $SNAP/gnome-platform/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/webkit2gtk-4.1/WebKitNetworkProcess
   /usr/lib/$SNAPCRAFT_ARCH_TRIPLET/webkit2gtk-4.1/WebKitWebProcess:
-    bindfile: $SNAP/gnome-platform/usr/lib/x86_64-linux-gnu/webkit2gtk-4.1/WebKitWebProcess
+    bind-file: $SNAP/gnome-platform/usr/lib/x86_64-linux-gnu/webkit2gtk-4.1/WebKitWebProcess
 
 slots:
   wike:
