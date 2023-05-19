@@ -49,6 +49,8 @@ apps:
     environment:
       PYTHONPATH: ${SNAP}/usr/lib/python3/dist-packages:$PYTHONPATH
     plugs:
+      - process-control
+      - unity7
       - audio-playback
       - network
       - network-status
