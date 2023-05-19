@@ -49,9 +49,9 @@ apps:
     environment:
       PYTHONPATH: ${SNAP}/usr/lib/python3/dist-packages:$PYTHONPATH
     plugs:
-      - process-control
       - unity7
       - audio-playback
+      - hardware-observe
       - network
       - network-status
     common-id: com.github.hugolabe.Wike
