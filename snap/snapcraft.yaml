@@ -22,8 +22,7 @@ parts:
     source-tag: '1.8.3'
     stage-packages:
       - python3-dbus
-      - python3-requests
-      - libwebkit2gtk-4.1-0      
+      - python3-requests     
     meson-parameters:
       - --prefix=/usr
     override-prime: |
