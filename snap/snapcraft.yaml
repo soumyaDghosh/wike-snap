@@ -30,11 +30,10 @@ parts:
       - XDG_DATA_DIRS: /snap/webkitgtk-sdk/current/usr/share:$XDG_DATA_DIRS
       - LD_LIBRARY_PATH: /snap/webkitgtk-sdk/current/usr/lib:/snap/webkitgtk-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET:/snap/webkitgtk-sdk/current/usr/lib/webkitgtk-6.0:/snap/webkitgtk-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$LD_LIBRARY_PATH
     build-packages:
-      - python3-setuptools
+      - python3-dbus
     override-pull: |
       craftctl default
       pip install --prefix=$CRAFT_PART_INSTALL/usr requests==2.28.1
-      pip install --prefix=$CRAFT_PART_INSTALL/usr dbus-python==1.2.18
     override-prime: |
       craftctl default
       # WORKAROUND: Use python from search path, the path detected by meson doesn't exist when running the Snap
@@ -46,6 +45,7 @@ parts:
     organize:
       usr/local: usr
       snap/wike/current: .
+      usr/lib/python3: usr/lib/python3.10
 
 plugs:
   webkitgtk-6-gnome-2204:
