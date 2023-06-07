@@ -8,8 +8,6 @@ architectures:
   - build-on: armhf
   - build-on: arm64
 layout:
-  /usr/share/wike:
-    symlink: $SNAP/usr/share/wike
   /usr/lib/$CRAFT_ARCH_TRIPLET/webkitgtk-6.0:
     bind: $SNAP/webkitgtk-platform/usr/lib/$CRAFT_ARCH_TRIPLET/webkitgtk-6.0
 
@@ -31,6 +29,8 @@ parts:
       - PATH: /snap/webkitgtk-sdk/current/usr/bin:$PATH
       - XDG_DATA_DIRS: /snap/webkitgtk-sdk/current/usr/share:$XDG_DATA_DIRS
       - LD_LIBRARY_PATH: /snap/webkitgtk-sdk/current/usr/lib:/snap/webkitgtk-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET:/snap/webkitgtk-sdk/current/usr/lib/webkitgtk-6.0:/snap/webkitgtk-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$LD_LIBRARY_PATH
+    build-packages:
+      - python3-setuptools
     override-pull: |
       craftctl default
       pip install --prefix=$CRAFT_PART_INSTALL/usr requests==2.28.1
