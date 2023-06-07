@@ -24,7 +24,7 @@ parts:
     source: https://github.com/hugolabe/Wike.git
     source-tag: '2.0.1'        
     meson-parameters:
-      - --prefix=/snap/resonance/current/wike
+      - --prefix=/snap/wike/current/usr
     build-environment:
       - PATH: /snap/webkitgtk-sdk/current/usr/bin:$PATH
       - XDG_DATA_DIRS: /snap/webkitgtk-sdk/current/usr/share:$XDG_DATA_DIRS
