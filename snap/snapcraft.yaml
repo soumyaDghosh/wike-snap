@@ -32,7 +32,7 @@ parts:
     stage-packages:
       - python3-dbus
     build-snaps:
-      - webkitgtk-6-gnome-2204-sdk
+      - webkitgtk-6-gnome-2204-sdk/latest/edge
     override-pull: |
       craftctl default
       pip install --prefix=$CRAFT_PART_INSTALL/usr requests==2.28.1
