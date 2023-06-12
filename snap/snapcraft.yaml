@@ -31,17 +31,20 @@ parts:
       - LD_LIBRARY_PATH: /snap/webkitgtk-sdk/current/usr/lib:/snap/webkitgtk-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET:/snap/webkitgtk-sdk/current/usr/lib/webkitgtk-6.0:/snap/webkitgtk-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$LD_LIBRARY_PATH
     stage-packages:
       - python3-dbus
+      - libjpeg9
     build-snaps:
       - webkitgtk-6-gnome-2204-sdk/latest/edge
     override-pull: |
       craftctl default
+      patch -p1 < $CRAFT_PROJECT_DIR/wike.patch
       pip install --prefix=$CRAFT_PART_INSTALL/usr requests==2.28.1
-    override-prime: |
+    override-build: |
       craftctl default
-      # WORKAROUND: Use python from search path, the path detected by meson doesn't exist when running the Snap
-      sed -e '1c#!/usr/bin/env python3' -i usr/bin/wike
-      rm -rf usr/share/man
-      rm -rf usr/share/doc
+      mkdir -p $CRAFT_PART_INSTALL/meta/gui
+      cp -r $CRAFT_PART_INSTALL/snap/wike/current/usr/share/icons $CRAFT_PART_INSTALL/meta/gui/
+      for i in `find $CRAFT_PART_INSTALL/meta/gui/icons -name "*.svg" -o -name "*.png"`; do
+        mv $i "`dirname $i`/snap.$CRAFT_PROJECT_NAME.`basename $i`"
+      done
     parse-info: [ usr/share/metainfo/com.github.hugolabe.Wike.metainfo.xml ]
     organize:
       usr/local: usr
