@@ -16,13 +16,13 @@ slots:
     interface: dbus
     bus: session
     name: com.github.hugolabe.Wike
-    
+
 parts:
   wike:
     # See 'snapcraft plugins'
     plugin: meson
     source: https://github.com/hugolabe/Wike.git
-    source-tag: '2.0.1'
+    source-tag: '2.1.0'
     source-depth: 1
     meson-parameters:
       - --prefix=/snap/wike/current/usr
@@ -57,7 +57,7 @@ plugs:
     interface: content
     target: $SNAP/webkitgtk-platform
     default-provider: webkitgtk-6-gnome-2204
-    
+
 apps:
   wike:
     command: usr/bin/wike
