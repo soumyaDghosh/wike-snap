@@ -22,7 +22,7 @@ parts:
     # See 'snapcraft plugins'
     plugin: meson
     source: https://github.com/hugolabe/Wike.git
-    source-tag: '3.0.1'
+    source-tag: '3.1.0'
     source-depth: 1
     meson-parameters:
       - --prefix=/snap/wike/current/usr
