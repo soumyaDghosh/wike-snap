@@ -1,26 +1,3 @@
-diff -Naur a/data/com.github.hugolabe.Wike.desktop.in b/data/com.github.hugolabe.Wike.desktop.in
---- a/data/com.github.hugolabe.Wike.desktop.in	2023-06-12 22:15:06.671163121 +0530
-+++ b/data/com.github.hugolabe.Wike.desktop.in	2023-06-12 22:15:47.532046481 +0530
-@@ -1,7 +1,7 @@
- [Desktop Entry]
- Name=Wike
- Comment=Search and read Wikipedia articles
--Icon=com.github.hugolabe.Wike
-+Icon=snap.wike.com.github.hugolabe.Wike
- Exec=wike
- Terminal=false
- Type=Application
-diff -Naur a/data/com.github.hugolabe.Wike.metainfo.xml.in b/data/com.github.hugolabe.Wike.metainfo.xml.in
---- a/data/com.github.hugolabe.Wike.metainfo.xml.in	2023-06-12 22:15:30.839582542 +0530
-+++ b/data/com.github.hugolabe.Wike.metainfo.xml.in	2023-06-12 22:16:17.255285458 +0530
-@@ -2,6 +2,7 @@
- <!-- Copyright (C) 2021-23 Hugo Olabera <hugolabe@gmail.com> -->
- <component type="desktop-application">
-   <id>com.github.hugolabe.Wike</id>
-+  <icon type="stock">snap.wike.com.github.hugolabe.Wike</icon>
-   <metadata_license>CC0-1.0</metadata_license>
-   <project_license>GPL-3.0-or-later</project_license>
-   <name>Wike</name>
 diff -Naur a/src/wike.in b/src/wike.in
 --- a/src/wike.in	2023-06-12 22:17:49.524804907 +0530
 +++ b/src/wike.in	2023-06-12 22:18:29.558862146 +0530

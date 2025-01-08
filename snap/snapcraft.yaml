@@ -1,15 +1,16 @@
-name: wike # you probably want to 'snapcraft register <name>'
-base: core22 # the base snap is the execution environment for this snap
+name: wike
+base: core24
 adopt-info: wike
-grade: stable # must be 'stable' to release into candidate/stable channels
-confinement: strict # use 'strict' once you have the right plugs and slots
-architectures:
-  - build-on: amd64
-  - build-on: armhf
-  - build-on: arm64
+grade: stable
+confinement: strict
+platforms:
+  amd64:
+  armhf:
+  arm64:
+
 layout:
-  /usr/lib/$CRAFT_ARCH_TRIPLET/webkitgtk-6.0:
-    bind: $SNAP/webkitgtk-platform/usr/lib/$CRAFT_ARCH_TRIPLET/webkitgtk-6.0
+  /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/webkitgtk-6.0:
+    bind: $SNAP/webkitgtk-platform/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/webkitgtk-6.0
 
 slots:
   wike:
@@ -19,7 +20,6 @@ slots:
 
 parts:
   wike:
-    # See 'snapcraft plugins'
     plugin: meson
     source: https://github.com/hugolabe/Wike.git
     source-tag: '3.1.0'
@@ -31,32 +31,21 @@ parts:
       - XDG_DATA_DIRS: /snap/webkitgtk-sdk/current/usr/share:$XDG_DATA_DIRS
       - LD_LIBRARY_PATH: /snap/webkitgtk-sdk/current/usr/lib:/snap/webkitgtk-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET:/snap/webkitgtk-sdk/current/usr/lib/webkitgtk-6.0:/snap/webkitgtk-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET/girepository-1.0:$LD_LIBRARY_PATH
     stage-packages:
-      - python3-dbus
       - libjpeg9
     build-snaps:
-      - webkitgtk-6-gnome-2204-sdk/latest/edge
+      - webkitgtk-6-gnome-2404-sdk
     override-pull: |
       craftctl default
       patch -p1 < $CRAFT_PROJECT_DIR/wike.patch
-      pip install --prefix=$CRAFT_PART_INSTALL/usr requests==2.28.1
-    override-build: |
-      craftctl default
-      mkdir -p $CRAFT_PART_INSTALL/meta/gui
-      cp -r $CRAFT_PART_INSTALL/snap/wike/current/usr/share/icons $CRAFT_PART_INSTALL/meta/gui/
-      for i in `find $CRAFT_PART_INSTALL/meta/gui/icons -name "*.svg" -o -name "*.png"`; do
-        mv $i "`dirname $i`/snap.$CRAFT_PROJECT_NAME.`basename $i`"
-      done
     parse-info: [ usr/share/metainfo/com.github.hugolabe.Wike.metainfo.xml ]
     organize:
-      usr/local: usr
       snap/wike/current: .
-      usr/lib/python3: usr/lib/python3.10
 
 plugs:
-  webkitgtk-6-gnome-2204:
+  webkitgtk-6-gnome-2404:
     interface: content
     target: $SNAP/webkitgtk-platform
-    default-provider: webkitgtk-6-gnome-2204
+    default-provider: webkitgtk-6-gnome-2404
 
 apps:
   wike:
@@ -64,8 +53,8 @@ apps:
     extensions: [gnome]
     environment:
       PYTHONPATH: ${SNAP}/usr/lib/python3.10/dist-packages:$PYTHONPATH
-      LD_LIBRARY_PATH: $SNAP/webkitgtk-platform/usr/lib:$SNAP/webkitgtk-platform/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:$LD_LIBRARY_PATH
-      GI_TYPELIB_PATH: $SNAP/webkitgtk-platform/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/girepository-1.0:$GI_TYPELIB_PATH
+      LD_LIBRARY_PATH: $SNAP/webkitgtk-platform/usr/lib:$SNAP/webkitgtk-platform/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$LD_LIBRARY_PATH
+      GI_TYPELIB_PATH: $SNAP/webkitgtk-platform/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/girepository-1.0:$GI_TYPELIB_PATH
     plugs:
       - audio-playback
       - unity7
